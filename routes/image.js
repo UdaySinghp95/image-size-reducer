@@ -6,7 +6,7 @@ const fs = require('fs');
 
 const multer = require('multer');
 const { processImageJob } = require('../processor/image');
-const uploadFile = multer({ dest: "temp/uploads/" });
+const uploadFile = multer({ dest: "/tmp/uploads/" });
 
 imageRoute.post('/add-image', async (req, res) => {
     const { productName, imageUrls } = req.body;
