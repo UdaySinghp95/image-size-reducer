@@ -18,7 +18,8 @@ imageRoute.post('/add-image', async (req, res) => {
     // const job = await imageQueue.add({ productName, imageUrls }); // For Redis use , for queue 
     processImageJob(productName, imageUrls)
     
-    res.status(200).json({ jobId: job.id });
+    // res.status(200).json({ jobId: job.id });
+    res.status(200).send('Process initiated');
 });
 
 imageRoute.post('/upload-csv', uploadFile.single('file'), async (req, res) => {
@@ -52,6 +53,12 @@ imageRoute.post('/upload-csv', uploadFile.single('file'), async (req, res) => {
 
 imageRoute.get('/job-status/:jobId', async (req, res) => {
     const { jobId } = req.params;
+
+    if(!process.env.DEVELOPMENT){
+      res.send('only work on development');
+        return;
+    }
+
 
     try {
         const job = await imageQueue.getJob(jobId);
