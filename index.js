@@ -19,9 +19,12 @@ app.use(imageRoute);
 
 connectDB()
 
+app.get('/', (req, res) => {
+  res.send('Image Processor ,Redis will only work for development server...');
+})
 
 app.get('/check-server', (req, res) => {
-  res.send('Server is Up')
+  res.send('Server is Up');
 })
 
 app.listen(PORT, () => {
