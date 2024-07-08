@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processed Images for <%= productName %></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            margin: auto;
+        }
+        .image-container img {
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Processed Images for <%= productName %></h1>
+        <div>
+            <% images.forEach(image => { %>
+                <div>
+                    <img src="data:image/jpeg;base64,<%= image.image %>" alt="<%= productName %> Image">
+                    <b>Reduced Percent <%= image.reducedPercent %></b>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</body>
+</html>
