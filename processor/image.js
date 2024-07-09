@@ -3,7 +3,6 @@ const sharp = require('sharp');
 const Image = require('../models/image');
 
 const processImageJob = async (productName, imageUrls) => {
-  console.log(productName,imageUrls)
   for (const url of imageUrls) {
     try {
       const response = await axios.get(url, { responseType: 'arraybuffer' });
@@ -15,7 +14,7 @@ const processImageJob = async (productName, imageUrls) => {
         .toBuffer();
 
       const image = new Image({
-        productName,
+        productName:productName.toLowerCase(),
         url,
         image: compressedImageBuffer,
         reducedPercent: ((originalImageBuffer.byteLength - compressedImageBuffer.byteLength) / originalImageBuffer.byteLength) * 100
