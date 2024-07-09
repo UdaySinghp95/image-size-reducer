@@ -19,7 +19,7 @@ const processImageJob = async (productName, imageUrls) => {
         image: compressedImageBuffer,
         reducedPercent: ((originalImageBuffer.byteLength - compressedImageBuffer.byteLength) / originalImageBuffer.byteLength) * 100
       });
-
+      console.log("image saved ",productName);
       await image.save();
     } catch (error) {
       console.error(`Error processing image from URL: ${url}`, error.message);
