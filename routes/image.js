@@ -79,7 +79,7 @@ imageRoute.get('/images/:productName', async (req, res) => {
     const { productName } = req.params;
 
     try {
-        const images = await Image.find({ productName });
+        const images = await Image.find({ productName:productName.toLowerCase() });
 
         if (!images || images.length === 0) {
             return res.status(404).json({ error: 'No images found for this product' });
