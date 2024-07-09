@@ -6,6 +6,7 @@ const app = express();
 require('dotenv').config()
 console.log(process.env.PORT)
 const PORT = process.env.PORT || 3000;
+const { default: mongoose } = require('mongoose');
 
 
 app.use(express.json());
@@ -26,6 +27,15 @@ app.get('/', (req, res) => {
 app.get('/check-server', (req, res) => {
   res.send('Server is Up');
 })
+
+app.get('/check-db', async (req, res) => {
+  try {
+    await mongoose.connection.db.admin().ping();
+    res.status(200).json({ message: 'Database connection is healthy' });
+  } catch (error) {
+    res.status(500).json({ error: 'Database connection failed', details: error.message });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
