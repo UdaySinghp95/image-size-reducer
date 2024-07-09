@@ -1,5 +1,3 @@
-# image-size-reducer
-
 # API Documentation 
 
 
