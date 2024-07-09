@@ -14,7 +14,7 @@ imageRoute.post('/add-image', async (req, res) => {
     if (!productName || !imageUrls || !Array.isArray(imageUrls)) {
         return res.status(400).json({ error: 'Invalid request data' });
     }
-
+  console.log('Pushed in queue');
     // const job = await imageQueue.add({ productName, imageUrls }); // For Redis use , for queue 
     processImageJob(productName, imageUrls)
     
