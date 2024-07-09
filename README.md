@@ -2,12 +2,18 @@
 
 
 # GET /check-server
-Description: Ensure that the server is running and connected to MongoDB 
+Description: Ensure that the server is running
 Response:
 Success (200 OK):
 	Server is Up
 
+____________________________________________________________________
 
+# GET /check-db
+Description: Ensure that the server is connected to MongoDB 
+Response:
+Success (200 OK):
+	Server is Up
 ____________________________________________________________________
 
 
